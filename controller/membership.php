@@ -3,39 +3,21 @@
  * ----------------------------------------------------------------------
  * @Author                : Waris Agung Widodo | ido alit
  * @Email                 : ido.alit@gmail.com
- * @Date                  : 2016-02-04 11:58:57
+ * @Date                  : 2016-02-04 17:57:33
  * @Last Modified by      : Waris Agung Widodo | ido alit
- * @Last Modified time    : 2016-02-04 19:19:43
+ * @Last Modified time    : 2016-02-04 19:19:22
  * ----------------------------------------------------------------------
  */
 
 /**
- * Function to convert object data into array
- *
- * @param   object data
- *
- * @return  array
+ * Group member path
  */
-function toArray($data_obj)
-{
-  $data = array_map(function ($res)
-  {
-    return $res->to_array();
-  }, $data_obj);
-
-  return $data;
-}
-
-
-/**
- * Group biblio path
- */
-$app->group('/biblio', function () use ($app)
+$app->group('/member', function () use ($app)
 {
   /**
-   * Biblio list
+   * Member list
    *
-   * @path    /biblio/list/token/limit/offset
+   * @path    /member/list/token/limit/offset
    *
    * @param   string    token
    * @param   integer   limit
@@ -48,40 +30,40 @@ $app->group('/biblio', function () use ($app)
     $limit    = (isset($args['limit'])) ? $args['limit'] : 10;
     $offset   = (isset($args['offset'])) ? $args['offset'] : 0;
     $options  = array('limit' => $limit, 'offset' => $offset);
-    $datas    = Biblio::all($options);
+    $datas    = Member::all($options);
 
     // convert into array
     $datas    = toArray($datas);
     $res = array();
     foreach ($datas as $data) {
-      $res[] = array('id' => $data['biblio_id'], 'title' => $data['title']);
+      $res[] = array('id' => $data['member_id'], 'name' => $data['member_name']);
     }
     return $response->getBody()->write(json_encode($res));
   });
 
 
   /**
-   * Biblio detile
+   * Member detile
    *
-   * @path    /biblio/id/token
+   * @path    /member/id/token
    *
-   * @param   integer   id
+   * @param   string    id
    * @param   string    token
    *
    * @return  json
    */
-  $app->get('/{id:[0-9]+}/{token}', function ($request, $response, $args)
+  $app->get('/{id}/{token}', function ($request, $response, $args)
   {
-    $datas = Biblio::find('all', array('conditions' => array('biblio_id = ?', $args['id'])));
+    $datas = Member::find('all', array('conditions' => array('member_id = ?', $args['id'])));
     $datas = toArray($datas);
     return $response->getBody()->write(json_encode($datas));
   });
 
 
   /**
-   * Biblio Create
+   * Member Create
    *
-   * @path    /biblio/create/token
+   * @path    /member/create/token
    *
    * @param   string    token
    *
@@ -94,36 +76,36 @@ $app->group('/biblio', function () use ($app)
 
 
   /**
-   * Biblio update
+   * Member update
    *
-   * @path    /biblio/update/id/token
+   * @path    /member/update/id/token
    *
-   * @param   integer   id
+   * @param   string   id
    * @param   string    token
    *
    * @return  boolean
    */
-  $app->put('/update/{id:[0-9]+}/{token}', function ($request, $response, $args)
+  $app->put('/update/{id}/{token}', function ($request, $response, $args)
   {
     /*coming soon*/
   });
 
 
   /**
-   * Biblio delete
+   * Member delete
    *
-   * @path    /biblio/delete/id/token
+   * @path    /member/delete/id/token
    *
-   * @param   integer   id
+   * @param   string   id
    * @param   string    token
    *
    * @return  boolean
    */
-  $app->delete('/delete/{id:[0-9]+}/{token}', function ($request, $response, $args)
+  $app->delete('/delete/{id}/{token}', function ($request, $response, $args)
   {
-    $post = Biblio::find_by_biblio_id($args['id']);
+    $post = Member::find_by_member_id($args['id']);
     $post->delete();
-    return $response->getBody()->write('Data biblio "'.$post->title.'" deleted.');
+    return $response->getBody()->write('Data member "'.$post->member_name.'" deleted.');
   });
 
 })->add($validate); // inject middleware token auth

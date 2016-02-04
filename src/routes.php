@@ -13,3 +13,6 @@ require_once '../controller/login.php';
 
 // Bibliography
 require_once '../controller/bibliography.php';
+
+// Membership
+require_once '../controller/membership.php';
