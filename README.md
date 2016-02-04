@@ -1,6 +1,6 @@
 # SLiMS API
 
-This application uses the Slim Framework 3.
+REST API for SLiMS Application. This application uses the Slim Framework 3.
 
 ## Installing
 
@@ -10,7 +10,7 @@ This application uses the Slim Framework 3.
 $ git clone https://github.com/idoalit/slims_api.git
 ```
 
-* goto project directory
+* goto application directory
 
 ```
 $ cd slims_api
@@ -38,7 +38,7 @@ CREATE TABLE `token` (
 
 ## Authors
 
-* **Waris Agung Widodo** - *SLiMS Developer* - [idoalit](https://github.com/idoalit)
+* **Waris Agung Widodo** - *Librarian* - [idoalit](https://github.com/idoalit)
 
 ## License
 
