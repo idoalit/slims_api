@@ -4,6 +4,24 @@ This application uses the Slim Framework 3.
 
 ## Installing
 
+* Clone this repository
+
+```
+$ git clone https://github.com/idoalit/slims_api.git
+```
+
+* goto project directory
+
+```
+$ cd slims_api
+```
+
+* Run composer install
+
+```
+$ composer install
+```
+
 * Create new table in your database to store token
 
 ```
