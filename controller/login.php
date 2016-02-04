@@ -5,10 +5,20 @@
  * @Email                 : ido.alit@gmail.com
  * @Date                  : 2016-02-04 12:32:35
  * @Last Modified by      : Waris Agung Widodo | ido alit
- * @Last Modified time    : 2016-02-04 15:13:27
+ * @Last Modified time    : 2016-02-04 17:56:46
  * ----------------------------------------------------------------------
  */
 
+/**
+ * Login
+ *
+ * @path    /login/username/password
+ *
+ * @param   string  username
+ * @param   string  password
+ *
+ * @return  json
+ */
 $app->post('/login/{username}/{password}', function ($request, $response, $args)
 {
   // get password from database

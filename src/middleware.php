@@ -1,4 +1,14 @@
 <?php
+/**
+ * ----------------------------------------------------------------------
+ * @Author                : Waris Agung Widodo | ido alit
+ * @Email                 : ido.alit@gmail.com
+ * @Date                  : 2016-02-04 09:49:12
+ * @Last Modified by      : Waris Agung Widodo | ido alit
+ * @Last Modified time    : 2016-02-04 19:00:01
+ * ----------------------------------------------------------------------
+ */
+
 // Application middleware
 $validate = function ($request, $response, $next)
 {
@@ -10,7 +20,8 @@ $validate = function ($request, $response, $next)
   if ($token) {
     $response = $next($request, $response);
   } else {
-    $response->getBody()->write('Token invalid or expired!');
+    // token not valid will return status 401 (Unauthorized)
+    $response = $response->withStatus(401);
   }
   return $response;
 };
