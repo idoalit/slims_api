@@ -1,3 +1,8 @@
+```
+DISCONTINUE
+```
+
+
 # SLiMS API
 
 REST API for SLiMS Application. This application uses the Slim Framework 3.
