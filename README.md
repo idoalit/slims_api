@@ -1,5 +1,5 @@
 ```
-DISCONTINUE
+Discontinued
 ```
 
 
